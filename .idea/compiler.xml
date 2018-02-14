@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="dal" />
+        <module name="do" />
+        <module name="dto" />
+        <module name="mappers" />
+        <module name="web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="dal" target="1.8" />
+      <module name="do" target="1.8" />
+      <module name="dto" target="1.8" />
+      <module name="mappers" target="1.8" />
+      <module name="report-generator" target="1.8" />
+      <module name="web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
