@@ -2,7 +2,7 @@ package com.imarchenko.ua.bl;
 
 import com.imarchenko.ua.dal.SshUser;
 import com.imarchenko.ua.dal.SshUserRepository;
-import com.imarchenko.ua.domain.CreateSshUserDo;
+import com.imarchenko.ua.domain.SshUserDo;
 import com.imarchenko.ua.dto.SshUserRequestDto;
 import com.imarchenko.ua.dto.SshUserResponseDto;
 import com.imarchenko.ua.service.mapper.SshUserMapper;
@@ -25,45 +25,46 @@ public class CreateSshUser {
     private SshUserMapper sshUserMapper;
 
     public ResponseEntity saveUser(SshUserRequestDto sshUserRequestDto){
-        CreateSshUserDo createSshUserDo = sshUserMapper.toCreateSshUserDo(sshUserRequestDto);
-        LOG.info(createSshUserDo);
-        if(isUserAndPassword(createSshUserDo)){
-            SshUser sshUser = sshUserMapper.toSshUser(createSshUserDo);
+        SshUserDo sshUserDo = sshUserMapper.toSshUserDo(sshUserRequestDto);
+        LOG.info(sshUserDo);
+        if(isUserAndPassword(sshUserDo)){
+            SshUser sshUser = sshUserMapper.toSshUser(sshUserDo);
             sshUserRepository.save(sshUser);
-            return createSuccessResponseEntity(createSshUserDo);
+            return createSuccessResponseEntity(sshUserDo);
         }
-        if(isUserAndPrvkey(createSshUserDo)){
-            SshUser sshUser = sshUserMapper.toSshUser(createSshUserDo);
+        if(isUserAndPrvkey(sshUserDo)){
+            SshUser sshUser = sshUserMapper.toSshUser(sshUserDo);
             sshUserRepository.save(sshUser);
-            return createSuccessResponseEntity(createSshUserDo);
+            return createSuccessResponseEntity(sshUserDo);
         }
-        return createErrorResponseEntity(createSshUserDo);
+        return createErrorResponseEntity(sshUserDo);
     }
 
-    private boolean isUserAndPrvkey(CreateSshUserDo createSshUserDo) {
-        return (!isNullOrEmpty(createSshUserDo.getUserName())
-                && isNullOrEmpty(createSshUserDo.getPassword())
-                && !isNullOrEmpty(createSshUserDo.getPrvkey()));
+    private boolean isUserAndPrvkey(SshUserDo sshUserDo) {
+        return (!isNullOrEmpty(sshUserDo.getUserName())
+                && isNullOrEmpty(sshUserDo.getPassword())
+                && !isNullOrEmpty(sshUserDo.getPrvkey()));
     }
 
-    private boolean isUserAndPassword(CreateSshUserDo createSshUserDo) {
-        return (!isNullOrEmpty(createSshUserDo.getUserName()) && !isNullOrEmpty(createSshUserDo.getPassword()) &&
-                (isNullOrEmpty(createSshUserDo.getPrvkey()) && isNullOrEmpty(createSshUserDo.getPhrase())));
+    private boolean isUserAndPassword(SshUserDo sshUserDo) {
+        return (!isNullOrEmpty(sshUserDo.getUserName()) && !isNullOrEmpty(sshUserDo.getPassword()) &&
+                (isNullOrEmpty(sshUserDo.getPrvkey()) && isNullOrEmpty(sshUserDo.getPhrase())));
     }
     private boolean isNullOrEmpty(String value){
         return value == null || value.isEmpty();
     }
-    private ResponseEntity<SshUserResponseDto> createSuccessResponseEntity(CreateSshUserDo createSshUserDo){
+
+    private ResponseEntity<SshUserResponseDto> createSuccessResponseEntity(SshUserDo sshUserDo){
         SshUserResponseDto sshUserResponseDto = new SshUserResponseDto();
-        sshUserResponseDto.setUserName(createSshUserDo.getUserName());
+        sshUserResponseDto.setUserName(sshUserDo.getUserName());
         sshUserResponseDto.setMessage(SUCCESS_MESSAGE);
         sshUserResponseDto.setStatus(SshUserResponseDto.Status.CREATED);
         return new ResponseEntity<SshUserResponseDto>(sshUserResponseDto, HttpStatus.CREATED);
     }
 
-    private ResponseEntity<SshUserResponseDto> createErrorResponseEntity(CreateSshUserDo createSshUserDo){
+    private ResponseEntity<SshUserResponseDto> createErrorResponseEntity(SshUserDo sshUserDo){
         SshUserResponseDto sshUserResponseDto = new SshUserResponseDto();
-        sshUserResponseDto.setUserName(createSshUserDo.getUserName());
+        sshUserResponseDto.setUserName(sshUserDo.getUserName());
         sshUserResponseDto.setErrorMessage(BAD_REQUEST_MESSAGE);
         sshUserResponseDto.setStatus(SshUserResponseDto.Status.ERROR);
         return new ResponseEntity<SshUserResponseDto>(sshUserResponseDto, HttpStatus.CREATED);

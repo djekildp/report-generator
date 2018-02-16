@@ -1,19 +1,25 @@
 package com.imarchenko.ua.domain;
 
-public class CreateSshUserDo {
+public class SshUserDo {
+    private long id;
     private String userName;
     private String password;
     private String prvkey;
     private String phrase;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getUserName() {
         return userName;
     }
 
     public void setUserName(String userName) {
-        if(userName.isEmpty()){
-            throw new NullPointerException("User name can't be empty.");
-        }
         this.userName = userName;
     }
 

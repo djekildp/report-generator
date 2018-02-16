@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="dal" />
         <module name="do" />
+        <module name="domain-object" />
         <module name="dto" />
         <module name="mappers" />
         <module name="web" />
@@ -16,6 +17,7 @@
     <bytecodeTargetLevel>
       <module name="dal" target="1.8" />
       <module name="do" target="1.8" />
+      <module name="domain-object" target="1.8" />
       <module name="dto" target="1.8" />
       <module name="mappers" target="1.8" />
       <module name="report-generator" target="1.8" />

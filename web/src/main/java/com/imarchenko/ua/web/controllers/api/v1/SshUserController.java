@@ -1,11 +1,9 @@
 package com.imarchenko.ua.web.controllers.api.v1;
 
 import com.imarchenko.ua.bl.CreateSshUser;
-import com.imarchenko.ua.dal.SshUser;
-import com.imarchenko.ua.dal.SshUserRepository;
-import com.imarchenko.ua.domain.CreateSshUserDo;
+import com.imarchenko.ua.bl.SshUsersByUserName;
+import com.imarchenko.ua.bl.UpdateSshUser;
 import com.imarchenko.ua.dto.SshUserRequestDto;
-import com.imarchenko.ua.service.mapper.SshUserMapper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,30 +22,19 @@ public class SshUserController {
     @Autowired
     CreateSshUser createSshUser;
 
+    @Autowired
+    SshUsersByUserName sshUsersByUserName;
+
     @ResponseBody
     @RequestMapping(value = "/sshUser/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createSshUser(@RequestBody SshUserRequestDto sshUserRequestDto) {
         return createSshUser.saveUser(sshUserRequestDto);
     }
 
+    @RequestMapping(value = "/sshUser/getUsersByUserName", method = RequestMethod.GET)
     @ResponseBody
-    @RequestMapping(value = "/sshUser/update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity updateSshUser(@RequestBody SshUserRequestDto createSshUserRequestDto) {
-
-        return new ResponseEntity<SshUserRequestDto>(createSshUserRequestDto, HttpStatus.CREATED);
+    public ResponseEntity getSshUser(@RequestParam(value = "userName") String userName) {
+        return sshUsersByUserName.getUsersByName(userName);
     }
-
-    @ResponseBody
-    @RequestMapping(value = "/sshUser/delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity deleteSshUser(@RequestBody SshUserRequestDto createSshUserRequestDto) {
-        return new ResponseEntity<SshUserRequestDto>(createSshUserRequestDto, HttpStatus.CREATED);
-    }
-
-//    @RequestMapping(value = "/sshUser/getUsersByUserName", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseBody
-//    public List<SshUser> getSshUser(@RequestParam(value = "userName") String userName) {
-//        List<SshUser> sshUserList = sshUserRepository.findByUserName(userName);
-//        return sshUserList;
-//    }
 
 }

@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>com.imarchenko.ua</groupId>
-            <artifactId>do</artifactId>
+            <artifactId>domain-object</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

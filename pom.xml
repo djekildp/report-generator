@@ -14,7 +14,7 @@
         <module>web</module>
         <module>dto</module>
         <module>dal</module>
-        <module>do</module>
+        <module>domain-object</module>
     </modules>
     <packaging>pom</packaging>
 
