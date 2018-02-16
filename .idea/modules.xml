@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/dal/dal.iml" filepath="$PROJECT_DIR$/dal/dal.iml" />
-      <module fileurl="file://$PROJECT_DIR$/domain-object/do.iml" filepath="$PROJECT_DIR$/domain-object/do.iml" />
       <module fileurl="file://$PROJECT_DIR$/domain-object/domain-object.iml" filepath="$PROJECT_DIR$/domain-object/domain-object.iml" />
       <module fileurl="file://$PROJECT_DIR$/dto/dto.iml" filepath="$PROJECT_DIR$/dto/dto.iml" />
       <module fileurl="file://$PROJECT_DIR$/mappers/mappers.iml" filepath="$PROJECT_DIR$/mappers/mappers.iml" />

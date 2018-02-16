@@ -10,5 +10,4 @@ public interface SshUserRepository extends CrudRepository<SshUser, Long> {
 
     void delete(SshUser entity);
 
-//    <S extends SshUser> S save(SshUser entity);
 }
