@@ -39,6 +39,6 @@ public class SshUserResponseDto {
     }
 
     public enum Status{
-        OK,CREATED,UPDATED,DELETED,ERROR,NOT_FOUND
+        OK,CREATED,UPDATED,DELETED,ERROR,NOT_FOUND,BAD_REQUEST
     }
 }

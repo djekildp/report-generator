@@ -14,6 +14,7 @@ public class SshUser {
     private String password;
     private String prvkey;
     private String phrase;
+    private Type type;
 
     public String getUserName() {
         return userName;
@@ -53,6 +54,39 @@ public class SshUser {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public enum Type{
+        USER(1, "Authorization by user and password."),
+        KEY(2, "Authorization by user and key.");
+
+        private int type;
+        private String value;
+        Type(int type, String value) {
+            this.type = type;
+            this.value = value;
+        }
+
+        public int getType() {
+            return type;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public static Type valueOf(int typeCode){
+            Type [] types = values();
+            int length = types.length;
+
+            for(int i = 0; i < length; i++){
+                Type type = types[i];
+                if(type.type == typeCode){
+                    return type;
+                }
+            }
+            throw new IllegalArgumentException("No matching constant for [" + typeCode + "]");
+        }
     }
 
 }

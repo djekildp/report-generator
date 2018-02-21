@@ -1,28 +1,11 @@
-package com.imarchenko.ua.dal;
+package com.imarchenko.ua.domain;
 
-import javax.persistence.*;
-
-@Entity
-@Table(indexes = {@Index(columnList = ("name"),name="LinuxHostEntity_name_index", unique=false)})
-public class LinuxHostEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class LinuxHostDo {
     private String name;
     private String host;
     private int port;
     private String workDirectory;
-
-    @OneToOne
-    private SshUser sshUser;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private SshUserDo sshUserDo;
 
     public String getName() {
         return name;
@@ -48,19 +31,19 @@ public class LinuxHostEntity {
         this.port = port;
     }
 
-    public SshUser getSshUser() {
-        return sshUser;
-    }
-
-    public void setSshUser(SshUser sshUser) {
-        this.sshUser = sshUser;
-    }
-
     public String getWorkDirectory() {
         return workDirectory;
     }
 
     public void setWorkDirectory(String workDirectory) {
         this.workDirectory = workDirectory;
+    }
+
+    public SshUserDo getSshUserDo() {
+        return sshUserDo;
+    }
+
+    public void setSshUserDo(SshUserDo sshUserDo) {
+        this.sshUserDo = sshUserDo;
     }
 }

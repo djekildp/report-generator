@@ -10,8 +10,8 @@ import org.mapstruct.Mapper;
 public interface SshUserMapper {
 
     SshUserDo toSshUserDo (SshUserRequestDto sshUserRequestDto);
-    SshUserRequestDto toSshUserRequestDto(SshUserDo sshUserDo);
 
+    SshUserRequestDto toSshUserRequestDto(SshUserDo sshUserDo);
     SshUser toSshUser (SshUserDo sshUserDo);
     SshUserDo toSshUserDoFromSshUser(SshUser sshUser);
     SshUserNameIdDto toSshUserNameIdDtoFromSshUserDo (SshUserDo sshUserDo);
